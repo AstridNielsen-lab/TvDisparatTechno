@@ -280,7 +280,7 @@ export class WhatsNewService {
 
     /** Options for the "what is new" modal dialogs */
     options = {
-        width: '500px',
+        width: '300px',
         customStyle: {
             boxShadow: '0px 0px 10px 5px #111',
             backgroundColor: '#333',
