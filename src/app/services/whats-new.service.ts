@@ -262,13 +262,13 @@ export class WhatsNewService {
         '0.14.0': [
             {
                 title: '🚀 New in v0.14.0',
-                html: `A principal característica desta versão é o suporte ao Xtream Code IPTV. O recurso também está disponível no PWA, mas funciona melhor na versão eletrônica do aplicativo e em combinação com o mpv player.<br />
+                html: `A principal característica desta versão é o suporte ao Xtream Code IPTV.<br/> O recurso também está disponível no PWA,<br/> mas funciona melhor na versão eletrônica <br/> do aplicativo e em combinação com o mpv player.<br />
                 
                 <h3>Outras atualizações Prime</h3>
-                * possibilidade de especificar um caminho personalizado para o mpv player<br/>
-                * corrigiu um bug irritante que aparecia ao reabrir o mpv player<br/>
-                * bibliotecas atualizadas usadas nos bastidores<br/>
-                * bug corrigido relacionado ao tratamento do agente do usuário`,
+                * possibilidade de especificar um <br/> caminho personalizado para o mpv player<br/>
+                * corrigiu um bug irritante que <br/> aparecia ao reabrir o mpv player<br/>
+                * bibliotecas atualizadas <br/> usadas nos bastidores<br/>
+                * bug corrigido relacionado <br/> ao tratamento do agente do usuário`,
                 button: {
                     text: 'OK!',
                     textColor: '#ccc',
@@ -280,7 +280,7 @@ export class WhatsNewService {
 
     /** Options for the "what is new" modal dialogs */
     options = {
-        width: '300px',
+        width: '500px',
         customStyle: {
             boxShadow: '0px 0px 10px 5px #111',
             backgroundColor: '#333',
