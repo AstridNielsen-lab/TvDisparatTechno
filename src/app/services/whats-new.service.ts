@@ -262,7 +262,7 @@ export class WhatsNewService {
         '0.14.0': [
             {
                 title: '🚀 New in v0.14.0',
-                html: `A principal característica desta versão é o suporte ao Xtream Code IPTV.<br/> O recurso também está disponível no PWA,<br/> mas funciona melhor na versão eletrônica <br/> do aplicativo e em combinação com o mpv player.<br />
+                html: `A principal característica desta <br/> versão é o suporte ao Xtream Code IPTV.<br/> O recurso também está disponível no PWA,<br/> mas funciona melhor na versão eletrônica <br/> do aplicativo e em combinação com o mpv player.<br />
                 
                 <h3>Outras atualizações Prime</h3>
                 * possibilidade de especificar um <br/> caminho personalizado para o mpv player<br/>
