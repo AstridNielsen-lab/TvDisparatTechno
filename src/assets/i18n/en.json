@@ -136,6 +136,7 @@
     },
     "THEMES": {
         "DARK_THEME": "Dark theme",
+        "LIGHT_THEME": "Light theme"
     },
     "CHANNELS": {
         "SEARCH_CHANNEL": "Search channel",
