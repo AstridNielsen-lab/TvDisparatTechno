@@ -17,6 +17,18 @@
     min-width: 400px;
 }
 
+.watermark {
+    position: absolute;
+    top: 20px; /* Ajuste a posição vertical conforme necessário */
+    right: 20px; /* Ajuste a posição horizontal conforme necessário */
+    background-image: url('caminho-para-sua-marca-dagua.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Ajuste a opacidade conforme desejado */
+    pointer-events: none; /* Evita que a marca d'água seja interativa */
+}
+
+
 @media only screen and (max-width: 480px) {
     .mat-drawer {
         width: 200px;
