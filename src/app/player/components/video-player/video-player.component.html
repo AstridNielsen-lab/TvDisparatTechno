@@ -50,14 +50,12 @@
                     [channel]="activeChannel"
                     [showCaptions]="playerSettings.showCaptions"
                 />
-                <div class="mpv-player" *ngIf="playerSettings.player === 'mpv'">
-                    
-               <video #target class="video-js" controls muted playsinline preload="none" data-setup='{"liveui": true, "muted": false}'>
-                   <div class="watermark"></div>
-                    
-                    <img src="./assets/images/custom-player.png" >
+             <video id="my-video" class="video-js" controls muted playsinline preload="none" data-setup='{}'>
+    <source src="{{activeChannel?.url + activeChannel?.epgParams}}" type="application/x-mpegURL">
+    <div class="watermark"></div>
+    <img src="./assets/images/custom-player.png">
+</video>
 
-                    </video>
                     <p>
                         The channel is played in a separate window in the MPV
                         player. (<a
