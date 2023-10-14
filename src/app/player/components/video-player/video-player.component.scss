@@ -17,16 +17,6 @@
     min-width: 400px;
 }
 
-.watermark {
-    position: absolute;
-    top: 20px; /* Ajuste a posição vertical conforme necessário */
-    right: 20px; /* Ajuste a posição horizontal conforme necessário */
-    background-image: url('https://tv-disparat-techno.vercel.app/assets/icons/icon-tv-256.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.5; /* Ajuste a opacidade conforme desejado */
-    pointer-events: none; /* Evita que a marca d'água seja interativa */
-}
 
 
 @media only screen and (max-width: 480px) {
@@ -54,8 +44,3 @@
 
 
 
-.custom-player {
-    position: absolute;
-    top: 10px; /* ajuste a posição vertical como desejado */
-    right: 10px; /* ajuste a posição horizontal como desejado */
-}
