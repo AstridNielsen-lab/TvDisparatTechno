@@ -45,16 +45,17 @@
                 ></app-vjs-player>
 
                 <!-- default html player component -->
-                <app-html-video-player
-                    *ngIf="playerSettings.player === 'html5'"
-                    [channel]="activeChannel"
-                    [showCaptions]="playerSettings.showCaptions"
-                />
-             <video id="my-video" class="video-js" controls muted playsinline preload="none" data-setup='{}'>
-    <source src="{{activeChannel?.url + activeChannel?.epgParams}}" type="application/x-mpegURL">
-    <div class="watermark"></div>
-    <img src="./assets/images/custom-player.png">
-</video>
+               <app-html-video-player
+    *ngIf="playerSettings.player === 'html5'"
+    [channel]="activeChannel"
+    [showCaptions]="playerSettings.showCaptions"
+>
+    <video #target class="video-js" controls muted playsinline preload="none" data-setup='{"liveui": true, "muted": false}'>
+        <source src="{{activeChannel?.url + activeChannel?.epgParams}}" type="application/x-mpegURL">
+        <div class="watermark"></div>
+        <img src="./assets/images/custom-player.png">
+    </video>
+</app-html-video-player>
 
                     <p>
                         The channel is played in a separate window in the MPV
