@@ -21,12 +21,13 @@
     position: absolute;
     top: 20px; /* Ajuste a posição vertical conforme necessário */
     right: 20px; /* Ajuste a posição horizontal conforme necessário */
-    background-image: url('caminho-para-sua-marca-dagua.png'); /* Substitua pelo caminho da sua imagem de marca d'água */
+    background-image: url('https://tv-disparat-techno.vercel.app/assets/icons/icon-tv-256.png'); /* Use o link da imagem externa aqui */
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.5; /* Ajuste a opacidade conforme desejado */
     pointer-events: none; /* Evita que a marca d'água seja interativa */
 }
+
 
 
 
