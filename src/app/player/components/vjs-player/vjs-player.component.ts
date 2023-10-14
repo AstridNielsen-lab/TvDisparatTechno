@@ -1,73 +1,81 @@
-import {
-    Component,
-    ElementRef,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    SimpleChanges,
-    ViewChild,
-    ViewEncapsulation,
-} from '@angular/core';
-import '@yangkghjh/videojs-aspect-ratio-panel';
-import videoJs from 'video.js';
-import 'videojs-contrib-quality-levels';
-import 'videojs-hls-quality-selector';
+<mat-drawer-container class="main-container">
+    <!-- sidebar content -->
+    <mat-drawer #drawer mode="side" opened disableClose>
+        <app-sidebar
+            *ngIf="channels$ | async as channels; else noChannels"
+            [channels]="channels"
+        />
+        <ng-template #noChannels
+            >No channels <br />
+            <button mat-button color="secondary" (click)="navigateHome()">
+                Go back
+            </button></ng-template
+        >
+    </mat-drawer>
+    <mat-drawer-content>
+        <ng-container *ngIf="activeChannel$ | async as activeChannel">
+            <!-- toolbar with drawer icon -->
+            <app-toolbar
+                (toggleLeftDrawerClicked)="drawer.toggle()"
+                (toggleRightDrawerClicked)="drawerRight.toggle()"
+                (multiEpgClicked)="openMultiEpgView()"
+                [activeChannel]="activeChannel"
+            />
 
-/**
- * This component contains the implementation of video player that is based on video.js library
- */
-@Component({
-    selector: 'app-vjs-player',
-    templateUrl: './vjs-player.component.html',
-    styleUrls: ['./vjs-player.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: true,
-})
-export class VjsPlayerComponent implements OnInit, OnChanges, OnDestroy {
-    /** DOM-element reference */
-    @ViewChild('target', { static: true }) target: ElementRef<Element>;
-    /** Options of VideoJs player */
-    @Input() options: videoJs.PlayerOptions;
-    /** VideoJs object */
-    player: videoJs.Player;
+            <app-audio-player
+                *ngIf="activeChannel.radio === 'true'; else videoPlayer"
+                [url]="activeChannel.url"
+                [icon]="activeChannel?.tvg?.logo"
+            />
+            <ng-template #videoPlayer>
+                <!-- video.js player -->
+                <app-vjs-player
+                    *ngIf="playerSettings.player === 'videojs'"
+                    [options]="{
+                        sources: [
+                            {
+                                src:
+                                    activeChannel?.url +
+                                    activeChannel?.epgParams,
+                                type: 'application/x-mpegURL'
+                            }
+                        ]
+                    }"
+                    [class.hide-captions]="!playerSettings.showCaptions"
+                ></app-vjs-player>
 
-    /**
-     * Instantiate Video.js on component init
-     */
-    ngOnInit(): void {
-        this.player = videoJs(
-            this.target.nativeElement,
-            {
-                ...this.options,
-                autoplay: true,
-            },
-            function onPlayerReady() {
-                this.volume(100);
-            }
-        );
-        this.player.hlsQualitySelector({
-            displayCurrentQuality: true,
-        });
-        this.player['aspectRatioPanel']();
-    }
-
-    /**
-     * Replaces the url source of the player with the changed source url
-     * @param changes contains changed channel object
-     */
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.options.previousValue) {
-            this.player.src(changes.options.currentValue.sources[0]);
-        }
-    }
-
-    /**
-     * Removes the players HTML reference on destroy
-     */
-    ngOnDestroy(): void {
-        if (this.player) {
-            this.player.dispose();
-        }
-    }
-}
+                <!-- default html player component -->
+                <app-html-video-player
+                    *ngIf="playerSettings.player === 'html5'"
+                    [channel]="activeChannel"
+                    [showCaptions]="playerSettings.showCaptions"
+                />
+                <div class="mpv-player" *ngIf="playerSettings.player === 'mpv'">
+                    <img src="./assets/images/custom-player.png" />
+                    <p>
+                        The channel is played in a separate window in the MPV
+                        player. (<a
+                            [routerLink]
+                            style="cursor: pointer"
+                            (click)="
+                                openUrl(
+                                    'https://github.com/4gray/iptvnator/wiki/What-is-mpv-video-player-and-how-to-install-it-on-different-operating-systems%3F'
+                                )
+                            "
+                            >Installation instructions</a
+                        >)
+                    </p>
+                </div>
+                <!-- channel overlay -->
+                <app-info-overlay
+                    [channel]="activeChannel"
+                    [epgProgram]="epgProgram$ | async"
+                ></app-info-overlay>
+            </ng-template>
+        </ng-container>
+    </mat-drawer-content>
+    <!-- right sidebar content -->
+    <mat-drawer position="end" #drawerRight mode="side" disableClose>
+        <app-epg-list *ngIf="isElectron"></app-epg-list>
+    </mat-drawer>
+</mat-drawer-container>
