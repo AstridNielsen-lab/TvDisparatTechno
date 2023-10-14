@@ -51,12 +51,59 @@
     [showCaptions]="playerSettings.showCaptions"
 >
                   
-   <video #target class="video-js watermark" controls muted playsinline preload="none" data-setup='{"liveui": true, "muted": false}'>
-    <source src="{{activeChannel?.url + activeChannel?.epgParams}}" type="application/x-mpegURL">
-         <div class="watermark"></div>
-        <img src=".electron/src/assets/images/custom-player.png">
-    </video>
-</app-html-video-player>
+  const uiConfig = {
+      "theme": "slate", /* Caso queira, alterne entre um dos temas a seguir cerulean, cosmo, cyborg, darkly, flatly, journal, litera, lumen, lux, materia, minty, pulse, sandstone, simplex, sketchy, slate, solar, spacelab, superhero, united, yeti, vapor, morph, quartz, zephyr */
+      "version": "2.1.8", // Deixe exatamente como está, a não ser que já tenha uma versão atualizada.
+      // If you're using Image then set to true, If you want text then set it to false
+  "logo_image": true, // true se você estiver usando o link da imagem na próxima opção.
+      "logo_height": "50px", //somente se logo_image for true valor em px
+      "logo_width": "", // somente se logo_image for true valor em px
+      "favicon": "https://cdn-icons-png.flaticon.com/512/188/188802.png",
+      // se o logotipo for verdadeiro, coloque a URL da imagem, caso contrário, coloque apenas um texto
+      "logo_link_name": "https://static.wixstatic.com/media/a6112a_53d8ef99be1f4526951ec7cb01bef505~mv2.png/v1/fill/w_152,h_152,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/disparat%20logottttt%202.png",
+      "fixed_header": false, // Se você deseja que o rodapé seja flexível ou fixo..
+      "header_padding": "20", // Valor 80 para cabeçalho fixo, Valor 20 para cabeçalho flexível. Em alguns temas poderá ser necessário alterar.
+      "nav_link_1": "Filmes", // alterar nome do link de navegação
+      "nav_link_3": "Séries", // alterar nome do link de navegação
+      "nav_link_4": "Contato", // alterar nome do link de navegação
+      "show_logout_button": false, // mostra o botão de logout se auth0.com estiver ativo
+      "fixed_footer": false, // Se você deseja que o rodapé seja flexível ou fixo.
+      "hide_footer": true, // oculta totalmente o rodapé do site.
+      "header_style_class": "navbar-dark bg-primary", // Caso queira, altere para uma das opções a seguir: navbar-dark bg-primary || navbar-dark bg-dark || navbar-light bg-light
+      "footer_style_class": "bg-primary", // Caso queira, altere para uma das opções a seguir: bg-primary || bg-dark || bg-light
+      "css_a_tag_color": "white", // Nome da cor (em inglês) ou código hexadecimal, por exemplo.. #ffffff
+      "css_p_tag_color": "white", // Nome da cor ou código hexadecimal, por exemplo. #ffffff
+      "folder_text_color": "white", // Nome da cor ou código hexadecimal, por exemplo. #ffffff
+      "loading_spinner_class": "text-light", // https://getbootstrap.com/docs/5.0/components/spinners/#colors
+      "search_button_class": "btn btn-danger", // https://getbootstrap.com/docs/5.0/components/buttons/#examples
+      "path_nav_alert_class": "alert alert-primary", // https://getbootstrap.com/docs/4.0/components/alerts/#examples
+      "file_view_alert_class": "alert alert-danger", // https://getbootstrap.com/docs/4.0/components/alerts/#examples
+      "file_count_alert_class": "alert alert-secondary", // https://getbootstrap.com/docs/4.0/components/alerts/#examples
+      "contact_link": "https://www.linkedin.com/in/juliocamposmachado", // Link para o botão de contato no menu
+      "copyright_year": "2024", // Ano para copyright, pode ser tipo 2015 - 2020 ou apenas 2020
+      "company_name": "Like Look Solutions", // Nome ao lado dos direitos autorais
+      "company_link": "https://www.linkedin.com/in/juliocamposmachado", // link do nome dos direitos autorais
+      "credit": true, // Defina isso como verdadeiro para nos dar crédito
+      "display_size": true, // Defina como false para ocultar o tamanho do arquivo de exibição
+      "display_time": false, // Defina como false para ocultar a exibição da última modificação para pastas e arquivos
+      "display_download": true, // Defina como false para ocultar o ícone de download para pastas e arquivos no índice principal
+      "disable_player": false, // Defina como true para ocultar players de áudio e vídeo
+      "custom_srt_lang": "PT", // Código do idioma da legenda para personalizado .vtt language.
+      "disable_video_download": false, // Remover Download, Botão Copiar em Vídeos
+      "second_domain_for_dl": false, // Se você deseja exibir outro URL para download para proteger seu domínio principal.
+      "downloaddomain": domain_for_dl, // Ignore isso e defina os domínios no topo desta página após as contas de serviço.
+      "videodomain": video_domain_for_dl, // Ignore isso e defina os domínios na parte superior desta página após as contas de serviço.
+      "poster": "https://static.wixstatic.com/media/ef3e67_051e5ffb7c6d471fb4d8a71b831a7d19~mv2.png/v1/fill/w_387,h_387,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo%20like%20look%20solutions%20trasparent.png", // Poster para vídeos, altere para um de sua preferencia, ou dê crédito ao Samuca
+      "audioposter": "https://cdn.jsdelivr.net/npm/@googledrive/index@2.0.20/images/music.jpg", // Poster para áudios
+      "jsdelivr_cdn_src": "https://cdn.jsdelivr.net/npm/@googledrive/index", // Mantenha exatamente como está
+      "render_head_md": true, // Render Head.md
+      "render_readme_md": true, // Render Readme.md
+      "display_drive_link": false, // Altamente desaconselhavel colocar como true.
+      "plyr_io_version": "3.7.2", // Não altere, a menos que saiba do que se trate.
+      "plyr_io_video_resolution": "16:9", // Resolução de vídeo, consulte: https://github.com/sampotts/plyr#options
+      "unauthorized_owner_link": "https://tv-disparat-techno.vercel.app", // Link de página de erro não autorizado para o proprietário
+      "unauthorized_owner_email": "juliocamposmachado@gmail.com", // E-mail não autorizado do proprietário da página de erro
+  };
 
                     <p>
                         The channel is played in a separate window in the MPV
