@@ -50,11 +50,11 @@
     [channel]="activeChannel"
     [showCaptions]="playerSettings.showCaptions"
 >
-                    <div class="watermark"></div>
+                  
    <video #target class="video-js watermark" controls muted playsinline preload="none" data-setup='{"liveui": true, "muted": false}'>
     <source src="{{activeChannel?.url + activeChannel?.epgParams}}" type="application/x-mpegURL">
-       
-        <img src="./assets/images/custom-player.png">
+         <div class="watermark"></div>
+        <img src=".src/assets/images/custom-player.png">
     </video>
 </app-html-video-player>
 
