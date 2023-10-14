@@ -30,6 +30,8 @@
         margin-top: 50px;
         flex-direction: column;
         align-items: center;
+        position: relative;
+        width: 100%;
 
         img {
             filter: invert(100%);
@@ -38,12 +40,9 @@
     }
 }
 
-.video-container {
-    position: relative;
-    width: 100%;
-}
 
-.logo {
+
+.custom-player {
     position: absolute;
     top: 10px; /* ajuste a posição vertical como desejado */
     right: 10px; /* ajuste a posição horizontal como desejado */
